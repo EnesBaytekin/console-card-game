@@ -1,9 +1,11 @@
 from card import Card
 from screen import Screen
+from os import get_terminal_size
 
 def main():
     sc = Screen.get()
-    sc.init(64, 24, " ")
+    width, height = get_terminal_size()
+    sc.init(width, height, " ")
     cards = [
         Card(symbol, number, 1, 1)
         for symbol in "♣♦♥♠" for number in [*"A23456789", "10", *"JQK"]
