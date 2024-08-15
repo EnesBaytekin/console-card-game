@@ -16,16 +16,18 @@ class Card:
         self.x = x
         self.y = y
         self.face_up = face_up
-    def draw(self):
+    def draw(self, offset_x=0, offset_y=0):
+        x = self.x+offset_x
+        y = self.y+offset_y
         sc = Screen.get()
         cls = type(self)
-        sc.draw(self.x, self.y, cls.image)
+        sc.draw(x, y, cls.image)
         if self.face_up:
             text = self.symbol+self.number
-            sc.draw(self.x+1, self.y+1, text)
-            sc.draw(self.x+cls.width-1-len(text), self.y+3, text)
+            sc.draw(x+1, y+1, text)
+            sc.draw(x+cls.width-1-len(text), y+3, text)
         else:
-            sc.draw(self.x+1, self.y+1, " ,, \n || \n '' ")
+            sc.draw(x+1, y+1, " ,, \n || \n '' ")
                 
 
 
