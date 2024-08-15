@@ -1,4 +1,5 @@
 from os import system, get_terminal_size
+from utils import clear_terminal
 
 class Screen:
     instance = None
@@ -39,7 +40,7 @@ class Screen:
                         self.set_at(x+dx, y+dy, c)
     def update(self):
         if self.changed:
-            system("clear")
+            clear_terminal()
             for y in range(self.height):
                 for x in range(self.width):
                     print(self.get_at(x, y), end="")
