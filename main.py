@@ -8,7 +8,7 @@ def main():
     width, height = get_terminal_size()
     sc.init(width, height, " ")
     cards = [
-        Card(symbol, number, 1, 1)
+        Card(symbol, number, 1, 1, False)
         for symbol in "♣♦♥♠" for number in [*"A23456789", "10", *"JQK"]
     ]
     cards[9].x = 20
