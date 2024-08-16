@@ -27,7 +27,7 @@ if os_name == "posix":
     def clear_terminal():
         system("clear")
 
-elif os.name == "nt":
+elif os_name == "nt":
 
     from msvcrt import getwch, kbhit
     def get_character():
