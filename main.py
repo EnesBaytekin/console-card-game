@@ -8,8 +8,7 @@ from pile_manager import PileManager
 
 def main():
     sc = Screen.get()
-    width, height = get_terminal_size()
-    sc.init(width, height, " ")
+    sc.init(50, 20, " ")
     con = Controller.get()
     cards = [
         Card(symbol, number, 1, 1, False)
@@ -27,6 +26,7 @@ def main():
         pm.update()
         sc.clear()
         pm.draw()
+        sc.set_at(sc.width-1, sc.height-1, ".")
         sc.update()
 
 if __name__ == "__main__":

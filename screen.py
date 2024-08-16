@@ -9,8 +9,10 @@ class Screen:
             cls.instance = cls()
         return cls.instance
     def init(self, width, height, bg="."):
-        self.width = width
-        self.height = height
+        self.max_width = width
+        self.max_height = height
+        self.width = min(width, self.max_width)
+        self.height = min(height, self.max_height)
         self.bg = bg
         self.buffer = [[self.bg for _ in range(height)] for _ in range(width)]
         self.changed = False
@@ -41,12 +43,16 @@ class Screen:
     def update(self):
         if self.changed:
             clear_terminal()
+            string = ""
             for y in range(self.height):
                 for x in range(self.width):
-                    print(self.get_at(x, y), end="")
-                print()
+                    string += self.get_at(x, y)
+                string += "\n"
+            print(string, end="")
             self.changed = False
         width, height = get_terminal_size()
+        width = min(width, self.max_width)
+        height = min(height, self.max_height)
         if width != self.width or height != self.height:
             self.init(width, height, self.bg)
 
