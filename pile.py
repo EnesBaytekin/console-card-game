@@ -1,7 +1,7 @@
 
 
 class Pile:
-    def __init__(self, x, y, cards):
+    def __init__(self, x, y, cards=[]):
         self.x = x
         self.y = y
         self.cards = []
@@ -21,4 +21,17 @@ class Pile:
     def draw(self):
         for card in self.cards:
             card.draw(self.x, self.y)
+    def split(self, number=1):
+        cards = self.cards[-number:]
+        pile = Pile(self.x, self.y)
+        for card in cards:
+            self.remove_card(card)
+            pile.add_card(card)
+        return pile
+    def flip(self):
+        for card in self.cards:
+            card.flip()
+        self.cards = self.cards[::-1]
+    def size(self):
+        return len(self.cards)
 

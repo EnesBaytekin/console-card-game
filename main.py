@@ -16,7 +16,9 @@ def main():
         for symbol in "♣♦♥♠" for number in [*"A23456789", "10", *"JQK"]
     ]
     pile = Pile(2, 3, cards)
-    pm = PileManager(deck=pile)
+    pm = PileManager(
+        deck=pile
+    )
     while True:
         sleep(0.033)
         con.update()
