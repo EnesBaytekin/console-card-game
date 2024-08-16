@@ -44,9 +44,9 @@ def is_colliding(rectA, rectB):
     ax, ay, aw, ah = rectA
     bx, by, bw, bh = rectB
     return (
-        ax <= bx+bw and
-        bx <= ax+aw and
-        ay <= by+bh and
-        by <= ay+ah
+        ax < bx+bw and
+        bx < ax+aw and
+        ay < by+bh and
+        by < ay+ah
     )
 
