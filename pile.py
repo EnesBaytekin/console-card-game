@@ -12,6 +12,7 @@ class Pile:
         card.x = 0
         card.y = 0
         self.cards.append(card)
+        self.index = len(self.cards)-1
     def remove_card(self, card):
         self.cards.remove(card)
         card.x += self.x
@@ -32,10 +33,21 @@ class Pile:
             self.remove_card(card)
             pile.add_card(card)
         return pile
+    def assemble(self, pile):
+        for card in self.cards[:]:
+            self.remove_card(card)
+            pile.add_card(card)
     def flip(self):
         for card in self.cards:
             card.flip()
         self.cards = self.cards[::-1]
+    def get_rect(self):
+        return (
+            self.x,
+            self.y,
+            6,
+            5
+        )
     def size(self):
         return len(self.cards)
     def update(self):

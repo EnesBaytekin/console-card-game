@@ -9,8 +9,11 @@ class Controller:
         return cls.instance
     def __init__(self):
         self.buffer = []
-    def check(self, char):
-        return char in self.buffer
+    def check(self, *chars):
+        for char in chars:
+            if char in self.buffer:
+                return True
+        return False
     def update(self):
         self.buffer.clear()
         while True:
