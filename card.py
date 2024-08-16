@@ -18,6 +18,9 @@ class Card:
         self.face_up = face_up
     def flip(self):
         self.face_up = not self.face_up
+    def move(self, dx, dy):
+        self.x += dx
+        self.y += dy
     def draw(self, offset_x=0, offset_y=0):
         x = self.x+offset_x
         y = self.y+offset_y
