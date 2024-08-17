@@ -4,10 +4,10 @@ class Pile:
     def __init__(self, x, y, cards=[]):
         self.x = x
         self.y = y
+        self.index = 0
         self.cards = []
         for card in cards:
             self.add_card(card)
-        self.index = 0
     def add_card(self, card):
         card.x = 0
         card.y = 0
@@ -56,8 +56,8 @@ class Pile:
         dy = con.check("s")-con.check("w")
         card = self.cards[self.index]
         card.move(dx, dy)
-        if con.check("e"):
-            self.index = (self.index+1)%len(self.cards)
-        if con.check("E"):
+        if con.check("tab"):
             self.index = (self.index-1)%len(self.cards)
+        if con.check("shift+tab"):
+            self.index = (self.index+1)%len(self.cards)
 

@@ -21,7 +21,7 @@ def main():
     while True:
         sleep(0.033)
         con.update()
-        if con.check("q"):
+        if con.check("Q"):
             break
         pm.update()
         sc.clear()

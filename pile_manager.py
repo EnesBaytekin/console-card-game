@@ -25,14 +25,6 @@ class PileManager:
         pile = self.get_current()
         self.remove_pile(name)
         self.add_pile(name, pile)
-    def previous(self):
-        names = list(self.piles.keys())
-        index = names.index(self.selection)
-        name = names[(index-1)%len(names)]
-        self.select(name)
-        pile = self.get_current()
-        self.remove_pile(name)
-        self.add_pile(name, pile)
     def draw(self):
         sc = Screen.get()
         for name, pile in self.piles.items():
@@ -68,7 +60,7 @@ class PileManager:
                 name = f"{self.selection}.{time()}"
                 self.add_pile(name, pile)
                 self.select(name)
-            if con.check("t"):
+            if con.check("enter"):
                 piles = []
                 for pile in self.piles.values():
                     if pile is current:
@@ -78,15 +70,13 @@ class PileManager:
                 if len(piles):
                     self.colliding_piles = piles
                     self.mode = "select_pile"
-            if con.check("e"):
+            if con.check("tab"):
                 self.next()
-            if con.check("E"):
-                self.previous()
-            if con.check("r"):
+            if con.check("e"):
                 self.mode = "cards"
         elif self.mode == "cards":
             current.update()
-            if con.check("r"):
+            if con.check("esc"):
                 self.mode = "piles"
         elif self.mode == "select_pile":
             if len(self.colliding_piles) == 1:
