@@ -16,7 +16,10 @@ if os_name == "posix":
             fcntl(fd, F_SETFL, old_flags | O_NONBLOCK)
             byte = stdin.buffer.raw.read(1)
             if byte is not None:
-                return byte.decode()
+                try:
+                    return byte.decode()
+                except:
+                    return ""
             else:
                 return None
         finally:
